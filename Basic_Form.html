@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Form</title>
+</head>
+<body>
+    <h1>Registration form</h1>
+    <form onsubmit="return validateForm()">
+        <h2>
+            First Name:* <input type="text" id="fn">
+        </h2>
+        <h2>
+            Last Name:* <input type="text" id="ln">
+        </h2>
+        <h2>
+            Email Address:* <input type="text" id="e">
+        </h2>
+        <h2>
+            Password:* <input type="text" id="pass">
+        </h2>
+        <h2>
+            Confirmation Password:* <input type="text", id="confirm">
+        </h2>
+        <h2>
+            Birthday: <input type="date">
+        </h2>
+        <h2>
+            Gender Identity: <br>
+            <input type="radio" name="Gender" id="g"> Male
+            <input type="radio" name="Gender" id="g"> Female
+            <input type="radio" name="Gender" id="g"> Non-binary
+            <input type="radio" name="Gender" id="g"> I prefer not to answer
+        </h2>
+        <h2>
+            A short description about myself: <br>
+            <textarea cols="50" rows="5"></textarea>
+        </h2>
+        <h2>
+            Favorite Language: 
+            <label for="language">
+                <select name="language" id="l">
+                    <option value="js">Javascript</option>
+                    <option value="py">Python</option>
+                    <option value="c">C</option>
+                    <option value="cpp">C++</option>
+                    <option value="jav">Java</option>
+                    <option value=".Net">C#</option>
+                </select>
+            </label>
+        </h2>
+        <h2>
+            <input type="checkbox" id="op"> Yes, I would like to receve periodic email updates
+        </h2>
+        <input type="submit" id="submit" value="Create Account"></input>
+        <p>*Indicate a required field</p>
+    </form>
+    <h1 id="result"></h1>
+    <script>
+        function validateForm(){
+            var fn = document.getElementById("fn").value;
+            var ln = document.getElementById("ln").value;
+            var e = document.getElementById("e").value;
+            var pass = document.getElementById("pass").value;
+            var con = document.getElementById("confirm").value;
+            if(fn == ""){
+                document.getElementById("result").innerHTML = "first name is empty";
+                return false;
+            }
+            if(ln == ""){
+                document.getElementById("result").innerHTML = "last name is empty";
+                return false;
+            }
+            if (!e.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+                document.getElementById("result").innerHTML = "email invalid";
+                return false;
+            }
+            if (pass!=con){
+                document.getElementById("result").innerHTML = "passwords not match";
+                return false;
+            }
+            document.getElementById("result").innerHTML = "Success!";
+            return false;
+        }
+        
+    </script>
+</body>
+</html>
